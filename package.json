@@ -1,6 +1,6 @@
 {
   "name": "@luca.salzone/pjclient",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "The Project Client is a command-line tool that you use to initialize, update and run any project.",
   "main": "src/index.js",
   "bin": {
@@ -22,7 +22,7 @@
     "src/"
   ],
   "author": "luca.salzone@gmail.com",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "esm": "^3.2.25"
   }
