@@ -55,6 +55,15 @@ and run _pjclient_
 
 ```
 
+<br>
+
+With this configuration you
+
+    - create a new folder
+    - clone repository 
+    - run maven build 
+
+
 
 ## License
 
