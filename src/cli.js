@@ -3,55 +3,54 @@ export function cli(args){
     var fs = require('fs');
     var cmdExecuted=false;
     try {
-        console.log("---- READ CONFIG ----");
         var filename = 'pjconfig.json';
         var config = JSON.parse(fs.readFileSync(filename));
-        console.log("---- END CONFIG ----");
         for (const command of config.commands) {
             if(args.find((elemento)=> { return elemento === command.name;})===command.name){
                 run(command);
             }
         }
     } catch (error) {
-        console.log('leggere la configurazione:' + error);
+        console.error('no configuration found!!! ' + error);
     }
     
     function run(command){
-        console.log(command);
         if(command.cmd){
-            runCmd(command.cmd);
+            runCmd(command,command);
         } else {
             if(command.options){
                 for (const option of command.options) {
                     if(!option.name){
-                        runCmd(option.cmd);
+                        runCmd(command, option);
                     }else{
                         if(args.find((elemento)=> { return elemento === option.name;})===option.name){
-                            runCmd(option.cmd);
+                            runCmd(command, option);
                         }
                     }
                 }
             }
         }
-        if(command.commands){
-            for (const command of config.commands) {
-                if(args[command.name]){
-                    runCmd(command);
-                }    
-            }   
-        }
     }
     
-    function runCmd(cmd){
-        cmdExecuted=true; 
-        exec(cmd, (err, stdout, stderr) => {
+    function runCmd(command, cmd){
+        cmdExecuted=true;
+        console.log((new Date().toISOString()) + " >>> " + cmd.cmd);
+        exec(cmd.cmd, (err, stdout, stderr) => {
             if (err) {
-                console.log(`---- ERRORE COMANDO (${command}) ----`) ;
-                console.log(stderr);
+                console.error(stderr);
+                console.error(err);
                 return;
             }
-            console.log(`stdout: ${stdout}`);
-            console.log("---- finish command ---");
+            console.log(stdout);
+            if(command.commands){
+                for (const singleCommand of command.commands) {
+                    run(singleCommand);    
+                }   
+            } else if (cmd.commands){
+                for (const singleCommand of cmd.commands) {
+                    run(singleCommand);    
+                }
+            }
         });
     }
 }
