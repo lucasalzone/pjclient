@@ -1,0 +1,36 @@
+{
+    "commands":[
+        {
+            "name":"install",
+            "options": [
+                {
+                    "name":"bl",
+                    "cmd":"svn co <url-snv>"
+                }
+            ],
+            "commands":[
+                {
+                    "name":"install",
+                    "options": [
+                        {
+                            "cmd":"cd trunk"
+                        }
+                    ],
+                    "commands":[
+                        {
+                            "name":"install",
+                            "options": [
+                                {
+                                    "cmd":"mvn clean install"
+                                }
+                            ],
+                            "stopOnError":true
+                        }                        
+                    ],
+                    "stopOnError":true
+                }                
+            ],
+            "stopOnError":true
+        }
+    ]
+}
