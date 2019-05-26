@@ -8,7 +8,7 @@ The Project Client is a command-line tool that you use to initialize, update and
     npm install -g @luca.salzone/pjclient
 ```
 
-Create project configuration with commands
+Create project configuration
 
 ```json
 {
@@ -17,31 +17,28 @@ Create project configuration with commands
             "name":"install",
             "options": [
                 {
-                    "name":"bl",
-                    "cmd":"svn co <url-snv>"
-                }
-            ],
-            "commands":[
-                {
-                    "name":"install",
-                    "options": [
-                        {
-                            "cmd":"cd trunk"
-                        }
-                    ],
+                    "name":"jaxrs",
+                    "cmd":"mkdir jaxrs",
                     "commands":[
                         {
-                            "name":"install",
                             "options": [
-                                {
-                                    "cmd":"mvn clean install"
+                                { 
+                                    "cmd":"git clone https://github.com/lucasalzone/jaxrs_example.git jaxrs",
+                                    "commands":[
+                                        {
+                                            "options": [
+                                                { "cmd":"mvn clean install -DskipTests -f jaxrs" }
+                                            ],
+                                            "stopOnError":true
+                                        }                        
+                                    ] 
                                 }
                             ],
+                            
                             "stopOnError":true
-                        }                        
-                    ],
-                    "stopOnError":true
-                }                
+                        }                
+                    ]
+                }
             ],
             "stopOnError":true
         }
@@ -49,6 +46,15 @@ Create project configuration with commands
 }
 
 ```
+
+and run _pjclient_
+
+```bash
+
+    pjclient install jaxrs
+
+```
+
 
 ## License
 
