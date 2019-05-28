@@ -1,4 +1,4 @@
-# `@luca.salzone/pjclient`
+# [`@luca.salzone/pjclient`](https://www.npmjs.com/package/@luca.salzone/pjclient)
 
 The Project Client is a command-line tool that you use to initialize, update and run any project.
 
