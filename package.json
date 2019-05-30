@@ -1,6 +1,6 @@
 {
   "name": "pjclient",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "The Project Client is a command-line tool that you use to initialize, update and run any project.",
   "main": "src/index.js",
   "bin": {
