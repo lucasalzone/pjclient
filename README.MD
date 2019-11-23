@@ -4,6 +4,9 @@ The Project Client is a command-line tool that you use to initialize, update and
 
 ## Installation & Usage
 
+In this section we show how to install, configure and usage project.
+
+
 ```bash
     npm install -g pjclient
 ```
